@@ -18,8 +18,8 @@ describe("template spec", () => {
     cy.sqlServer("SELECT * FROM dbo.ProductReview").then((users) => {
       cy.log(users);
 
-      let new_Array = users;
-      cy.log(new_Array[0][0]);
+      //let new_Array = users;
+      //cy.log(new_Array[0][0]);
     });
   });
 
