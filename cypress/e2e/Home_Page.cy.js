@@ -1,17 +1,17 @@
-import testDataFile from "../fixtures/testData/test.json";
+import testDataFile from "../fixtures/testData/JM_MainSearchData.json";
 
 describe("template spec", () => {
   let testdata;
 
   before(() => {
-    cy.fixture("testData\\test.json").then((data) => {
+    cy.fixture("testData\\JM_MainSearchData.json").then((data) => {
       testdata = data;
     });
   });
 
   it.only("passes", () => {
     cy.viewport(1300, 660);
-    cy.visit("https://au.jm-dev.store/");
+    cy.visit("/"); //Defined Base Url inside the cypress.confij.js file
     let obj = JSON.parse(JSON.stringify(testDataFile));
     cy.log(obj.Username);
 

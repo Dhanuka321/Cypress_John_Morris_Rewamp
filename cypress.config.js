@@ -23,6 +23,7 @@ module.exports = defineConfig({
     watchForFileChanges: true,
     video: true,
     videoCompression: 32,
+    baseUrl: "https://au.jm-dev.store",
     reporter: "mochawesome",
     reporterOptions: {
       charts: true,
