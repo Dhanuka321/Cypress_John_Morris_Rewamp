@@ -25,9 +25,18 @@ describe("SearchProducts", () => {
     mainSearch.searchProductByParticularSKU(skuID);
   });
 
-  it.only("Searched_Product_Count_By_Random_SKU", () => {
+  it("Searched_Product_Count_By_Random_SKU", () => {
     cy.viewport(1300, 660);
-    cy.visit("/");
-    mainSearch.checkSecrhedProductCount(skuID);
+    for (let i = 0; i < 10; i++) {
+      cy.visit("/");
+      mainSearch.checkSecrhedProductCount();
+    }
+  });
+  it.only("check_Product_Published_And_Deleted", () => {
+    cy.viewport(1300, 660);
+    for (let i = 0; i < 10; i++) {
+      cy.visit("/");
+      mainSearch.checkPublishedAndDeleted();
+    }
   });
 });

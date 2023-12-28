@@ -10,9 +10,14 @@ class JM_MainSearchPage {
     return element;
   }
 
-  clickOnSearchedProduct(productName) {
-    let element = cy.xpath(`//h6[text()='${productName}']`);
+  clickOnSearchedProduct(skuId) {
+    let element = cy.xpath(
+      `//span[text()='${skuId}'][@class='flex flex-1 pb-[1px] leading-[1]']`
+    );
     return element;
+
+    // let element = cy.xpath(`//h6[text()='${productName}']`);
+    // return element;
   }
 
   pngOfSearchedProduct() {

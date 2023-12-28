@@ -27,9 +27,9 @@ class JM_MainSearchFun extends JM_MainSearchPage {
       let searchArea = this.searchFieldArea();
       searchArea.type(skuId);
 
-      cy.wait(3000);
+      cy.wait(3000); //wait until search
       //Click on Searched Product
-      let searchedProduct = this.clickOnSearchedProduct(productName);
+      let searchedProduct = this.clickOnSearchedProduct(skuId);
       searchedProduct.click();
       cy.wait(2000);
       // cy.log(productDetails[4]); // name
@@ -40,18 +40,46 @@ class JM_MainSearchFun extends JM_MainSearchPage {
     });
   }
 
-  checkSecrhedProductCount(skuId) {
+  checkSecrhedProductCount() {
     //Click main search button
     let searchElement = this.searchButtonElement();
     searchElement.click();
+    cy.sqlServer(
+      "SELECT TOP 1 * FROM Product " +
+        "WHERE ProductTypeId = 5 AND Published = 1 AND Deleted = 0 ORDER BY NEWID()"
+    ).then((productDetails) => {
+      let skuId = productDetails[21];
+      //Type sku on search field
+      let searchArea = this.searchFieldArea();
+      searchArea.type(skuId);
 
-    //Type sku on search field
-    let searchArea = this.searchFieldArea();
-    searchArea.type(skuId);
+      cy.wait(3000); //wait until search
 
-    //Check the count of searched result
-    let pngofSearchedProduct = this.pngOfSearchedProduct();
-    pngofSearchedProduct.should("have.length", 1);
+      //Check the count of searched result
+      let pngofSearchedProduct = this.pngOfSearchedProduct();
+      pngofSearchedProduct.should("have.length", 1);
+    });
+  }
+
+  checkPublishedAndDeleted() {
+    //Click main search button
+    let searchElement = this.searchButtonElement();
+    searchElement.click();
+    cy.sqlServer(
+      "SELECT TOP 1 * FROM Product " +
+        "WHERE ProductTypeId = 5 AND Published = 1 AND Deleted = 1 ORDER BY NEWID()"
+    ).then((productDetails) => {
+      let skuId = productDetails[21];
+      //Type sku on search field
+      let searchArea = this.searchFieldArea();
+      searchArea.type(skuId);
+
+      cy.wait(3000); //wait until search
+
+      //Check the count of searched result
+      let pngofSearchedProduct = this.pngOfSearchedProduct();
+      pngofSearchedProduct.should("have.length", 0);
+    });
   }
 }
 
