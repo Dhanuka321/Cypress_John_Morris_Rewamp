@@ -34,7 +34,7 @@ describe("SearchProducts", () => {
   });
   it.only("check_Product_Published_And_Deleted", () => {
     cy.viewport(1300, 660);
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 100; i++) {
       cy.visit("/");
       mainSearch.checkPublishedAndDeleted();
     }
