@@ -14,21 +14,21 @@
 // ***********************************************************
 
 // Import commands.js using ES2015 syntax:
-import './commands'
+import "./commands";
+import "cypress-mochawesome-reporter/register";
 
-require('cypress-xpath');
+require("cypress-xpath");
 // const sqlServer = require('cypress-sql-server');
-// sqlServer.loadDBCommands(); 
-import sqlServer from 'cypress-sql-server';
-sqlServer.loadDBCommands(); 
+// sqlServer.loadDBCommands();
+import sqlServer from "cypress-sql-server";
+sqlServer.loadDBCommands();
 
-
-Cypress.on('uncaught:exception', (err, runnable) => {
-    //require('cypress-xpath');
-    // returning false here prevents Cypress from
-    // failing the test
-    return false
-  })
+Cypress.on("uncaught:exception", (err, runnable) => {
+  //require('cypress-xpath');
+  // returning false here prevents Cypress from
+  // failing the test
+  return false;
+});
 
 // Alternatively you can use CommonJS syntax:
 // require('./commands')

@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "chromeWebSecurity": false,
   "scripts": {
     "test": "npx cypress run --spec cypress/e2e/scripts/JM_Products.cy.js --browser chrome --headed || npx run posttest",
-    "cypress-dashboard": "npx cypress run --spec cypress/e2e/scripts/JM_Products.cy.js,cypress/e2e/scripts/JM_MainSearch.cy.js --record --key 1e05d7c7-99ed-4ec9-bd52-25d4939df894 --browser chrome --headed || npx run posttest",
-    "posttest": "npm run merge-reports && npm run generate-htmlreport",
+    "cypress-dashboard": "npx cypress run --spec cypress/e2e/scripts/JM_MainSearch.cy.js --record --key 1e05d7c7-99ed-4ec9-bd52-25d4939df894 --browser chrome --headed",
     "postcypress-dashboard": "npm run merge-reports && npm run generate-htmlreport",
     "merge-reports": "mochawesome-merge ./cypress/reports/*.json > ./report1.json",
     "generate-htmlreport": "marge ./report1.json --reportDir ./cypress/reports"
@@ -26,6 +26,7 @@
     "tedious": "^16.6.0"
   },
   "devDependencies": {
+    "cypress-mochawesome-reporter": "^3.8.0",
     "cypress-sql-server": "^1.0.0"
   }
 }

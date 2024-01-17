@@ -2,6 +2,7 @@ import JM_MainSearchDataFile from "../../fixtures/testData/JM_MainSearchData.jso
 import JM_MainSearchFun from "../functions/JM_MainSearchFun";
 
 describe("SearchProducts", () => {
+  // Run Command npm run cypress-dashboard
   let skuID = "";
   let mainSearch = new JM_MainSearchFun();
 
@@ -10,7 +11,7 @@ describe("SearchProducts", () => {
     skuID = dataSet.SKU;
   });
 
-  it("Search_Random_Products_By_SKU", () => {
+  xit("Search_Random_Products_By_SKU", () => {
     cy.viewport(1300, 660);
 
     for (let i = 0; i < 5; i++) {
@@ -32,11 +33,12 @@ describe("SearchProducts", () => {
       mainSearch.checkSecrhedProductCount();
     }
   });
-  xit("check_Product_Published_And_Deleted", () => {
-    cy.viewport(1300, 660);
-    for (let i = 0; i < 100; i++) {
+  for (let i = 0; i < 100; i++) {
+    it("check_Product_Published_And_Deleted", () => {
+      cy.viewport(1300, 660);
+
       cy.visit("/");
       mainSearch.checkPublishedAndDeleted();
-    }
-  });
+    });
+  }
 });

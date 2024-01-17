@@ -73,6 +73,8 @@ class JM_MainSearchFun extends JM_MainSearchPage {
       //Type sku on search field
       let searchArea = this.searchFieldArea();
       searchArea.type(skuId);
+      cy.log(skuId);
+      cy.addTestContext(skuId);
 
       cy.wait(3000); //wait until search
 

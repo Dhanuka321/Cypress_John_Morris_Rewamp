@@ -19,15 +19,21 @@ const dbSettings = {
 module.exports = defineConfig({
   projectId: "h68k6i",
   projectId: "iauyf5",
+  reporter: "cypress-mochawesome-reporter",
   e2e: {
     watchForFileChanges: true,
     video: true,
     videoCompression: 32,
     baseUrl: "https://au.jm-dev.store",
-    reporter: "mochawesome",
+    // reporter: "mochawesome",
+    screenshotOnRunFailure: true,
     reporterOptions: {
       charts: true,
       overwrite: false,
+      embeddedScreenshots: true,
+      videoOnFailOnly: true,
+      reportPageTitle: "custom-title",
+      inlineAssets: true,
       html: false,
       json: true,
       reportDir: "cypress/reports",
@@ -49,6 +55,7 @@ module.exports = defineConfig({
       const tasks = sqlServer.loadDBPlugin(dbSettings);
       //const tasks = sqlServer.loadDBPlugin(config.db);
       on("task", tasks);
+      require("cypress-mochawesome-reporter/plugin")(on);
 
       return config;
       // allows db data to be accessed in tests
@@ -60,4 +67,5 @@ module.exports = defineConfig({
   },
   video: true,
   videoCompression: 32,
+  chromeWebSecurity: false,
 });

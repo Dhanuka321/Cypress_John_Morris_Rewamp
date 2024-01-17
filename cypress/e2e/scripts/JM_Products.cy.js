@@ -1,127 +1,125 @@
 import JM_ProductFun from "../functions/JM_ProductFun";
-import LabortarySubcategories from "../../fixtures/testData/JM_LabortarySubcategories";
-import FoodAndFeed from "../../fixtures/testData/JM_FoodAndFeed";
-import Environmental from "../../fixtures/testData/JM_Environmental";
-import Education from "../../fixtures/testData/JM_Education";
-import Industrial from "../../fixtures/testData/JM_Industrial";
-import clinical from "../../fixtures/testData/JM_Clinical";
-import Petrochemical from "../../fixtures/testData/JM_PetroChemical";
-import TestAndMeasurement from "../../fixtures/testData/JM_TestAndMeasurement";
 
 describe("Products_And_SubCategories", () => {
+  // Run Command npm run cypress-dashboard
+  //This is wrriten for John Morris Live Enviroment (https://www.johnmorrisgroup.com/)
   let products = new JM_ProductFun();
 
-  before(() => {});
-
-  //Click all Labortary Subcategories
-  for (let i = 0; i < LabortarySubcategories.length; i++) {
-    xit(`Check_Product_Labortary_Sub_Category_${i} ${LabortarySubcategories[i].name}`, () => {
-      cy.viewport(1300, 660);
-
-      cy.visit(
-        "https://www.johnmorrisgroup.com/products/laboratory?categoryId=68277"
-      );
-      products.clickProductsSubcategory(LabortarySubcategories[i].name);
-      cy.clearCookies();
+  let labortarySubCategoryList;
+  let foodAndFeedSubCategoryList;
+  let environmentalSubCategoryList;
+  let educationSubCategoryList;
+  let industrialSubCategoryList;
+  let clinicalSubCategoryList;
+  let petrochemicalSubCategoryList;
+  let testAndMeasurmentSubCategoryList;
+  let subCategoryIDs = [
+    "68277",
+    "70388",
+    "68050",
+    "70372",
+    "68180",
+    "70366",
+    "68928",
+    "70332",
+  ];
+  before(() => {
+    //get Labortary Sub Category List //424
+    cy.request(
+      `https://www.johnmorrisgroup.com/api/sub-categories?categoryId=${subCategoryIDs[0]}`
+    ).then((subcategoryList) => {
+      labortarySubCategoryList = subcategoryList;
+      cy.log(labortarySubCategoryList.body.length);
     });
-  }
 
-  for (let i = 0; i < FoodAndFeed.length; i++) {
-    it(`Check_Product_Food_And_Feed_Sub_Category_${i} ${FoodAndFeed[i].name}`, () => {
-      cy.viewport(1300, 660);
-
-      cy.visit(
-        "https://www.johnmorrisgroup.com/products/food-and-feed?categoryId=70388"
-      );
-      products.clickProductsSubcategory(FoodAndFeed[i].name);
-      cy.clearCookies();
+    //get Food and Feed Sub Category List  //20
+    cy.request(
+      `https://www.johnmorrisgroup.com/api/sub-categories?categoryId=${subCategoryIDs[1]}`
+    ).then((subcategoryList) => {
+      foodAndFeedSubCategoryList = subcategoryList;
+      cy.log(foodAndFeedSubCategoryList.body.length);
     });
-  }
 
-  //Click all Food And Feed Subcategories
-  for (let i = 0; i < FoodAndFeed.length; i++) {
-    it(`Check_Product_Food_And_Feed_Sub_Category_${i} ${FoodAndFeed[i].name}`, () => {
-      cy.viewport(1300, 660);
-
-      cy.visit(
-        "https://www.johnmorrisgroup.com/products/food-and-feed?categoryId=70388"
-      );
-      products.clickProductsSubcategory(FoodAndFeed[i].name);
-      cy.clearCookies();
+    //get environmental Sub Category List //34
+    cy.request(
+      `https://www.johnmorrisgroup.com/api/sub-categories?categoryId=${subCategoryIDs[2]}`
+    ).then((subcategoryList) => {
+      environmentalSubCategoryList = subcategoryList;
+      cy.log(environmentalSubCategoryList.body.length);
     });
-  }
-  //Click all Environmental Subcategories
-  for (let i = 0; i < Environmental.length; i++) {
-    it(`Check_Product_Environmental_Sub_Category_${i} ${Environmental[i].name}`, () => {
-      cy.viewport(1300, 660);
 
-      cy.visit(
-        "https://www.johnmorrisgroup.com/products/environmental?categoryId=68050"
-      );
-      products.clickProductsSubcategory(Environmental[i].name);
-      cy.clearCookies();
+    //get Educattion Sub Category List 1
+    cy.request(
+      `https://www.johnmorrisgroup.com/api/sub-categories?categoryId=${subCategoryIDs[3]}`
+    ).then((subcategoryList) => {
+      educationSubCategoryList = subcategoryList;
+      cy.log(educationSubCategoryList.body.length);
     });
-  }
-  //Click all Education Subcategories
-  for (let i = 0; i < Environmental.length; i++) {
-    it(`Check_Product_Education_Sub_Category_${i} ${Education[i].name}`, () => {
-      cy.viewport(1300, 660);
 
-      cy.visit(
-        "https://www.johnmorrisgroup.com/products/education?categoryId=70372"
-      );
-      products.clickProductsSubcategory(Education[i].name);
-      cy.clearCookies();
+    //get Industrial Sub Category List 164
+    cy.request(
+      `https://www.johnmorrisgroup.com/api/sub-categories?categoryId=${subCategoryIDs[4]}`
+    ).then((subcategoryList) => {
+      industrialSubCategoryList = subcategoryList;
+      cy.log(industrialSubCategoryList.body.length);
     });
-  }
-  //Click all Industrial Subcategories
-  for (let i = 0; i < Industrial.length; i++) {
-    it(`Check_Product_Industrial_Sub_Category_${i} ${Industrial[i].name}`, () => {
-      cy.viewport(1300, 660);
 
-      cy.visit(
-        "https://www.johnmorrisgroup.com/products/industrial?categoryId=68180"
-      );
-      products.clickProductsSubcategory(Industrial[i].name);
-      cy.clearCookies();
+    //get Clinical Sub Category List 16
+    cy.request(
+      `https://www.johnmorrisgroup.com/api/sub-categories?categoryId=${subCategoryIDs[5]}`
+    ).then((subcategoryList) => {
+      clinicalSubCategoryList = subcategoryList;
+      cy.log(clinicalSubCategoryList.body.length);
     });
-  }
-  //Click all clinical Subcategories
-  for (let i = 0; i < clinical.length; i++) {
-    it(`Check_Product_Industrial_Sub_Category_${i} ${clinical[i].name}`, () => {
-      cy.viewport(1300, 660);
 
-      cy.visit(
-        "https://www.johnmorrisgroup.com/products/clinical?categoryId=70366"
-      );
-      products.clickProductsSubcategory(clinical[i].name);
-      cy.clearCookies();
+    //get Petrochemical Sub Category List 2
+    cy.request(
+      `https://www.johnmorrisgroup.com/api/sub-categories?categoryId=${subCategoryIDs[6]}`
+    ).then((subcategoryList) => {
+      petrochemicalSubCategoryList = subcategoryList;
+      cy.log(petrochemicalSubCategoryList.body.length);
     });
-  }
 
-  //Click all Petrochemical Subcategories
-  for (let i = 0; i < Petrochemical.length; i++) {
-    it(`Check_Product_Petrochemical_Sub_Category_${i} ${Petrochemical[i].name}`, () => {
-      cy.viewport(1300, 660);
-
-      cy.visit(
-        "https://www.johnmorrisgroup.com/products/petrochemical?categoryId=68928"
-      );
-      products.clickProductsSubcategory(Petrochemical[i].name);
-      cy.clearCookies();
+    //get Test And Measurement Sub Category List 22
+    cy.request(
+      `https://www.johnmorrisgroup.com/api/sub-categories?categoryId=${subCategoryIDs[7]}`
+    ).then((subcategoryList) => {
+      testAndMeasurmentSubCategoryList = subcategoryList;
+      cy.log(testAndMeasurmentSubCategoryList.body.length);
     });
-  }
+  });
 
-  //Click all TestAndMeasurement Subcategories
-  for (let i = 0; i < TestAndMeasurement.length; i++) {
-    it(`Check_Product_TestAndMeasurement_Sub_Category_${i} ${TestAndMeasurement[i].name}`, () => {
-      cy.viewport(1300, 660);
+  //Loop through sub categories and verify
+  for (let j = 0; j < subCategoryIDs.length; j++) {
+    if (j == 0) {
+      for (let i = 0; i < 1; i++) {
+        it(`education__ ${i}__`, () => {
+          cy.viewport(1300, 660);
 
-      cy.visit(
-        "https://www.johnmorrisgroup.com/products/test-and-measurement?categoryId=70332"
-      );
-      products.clickProductsSubcategory(TestAndMeasurement[i].name);
-      cy.clearCookies();
-    });
+          cy.visit(
+            `https://www.johnmorrisgroup.com/products/test-and-measurement?categoryId=${subCategoryIDs[3]}`
+          );
+          products.clickProductsSubcategory(
+            educationSubCategoryList.body[i].name
+          );
+          cy.clearCookies();
+        });
+      }
+    }
+    if (j == 1) {
+      for (let i = 0; i < 2; i++) {
+        it(`petrochemical__ ${i}__`, () => {
+          cy.viewport(1300, 660);
+
+          cy.visit(
+            `https://www.johnmorrisgroup.com/products/test-and-measurement?categoryId=${subCategoryIDs[6]}`
+          );
+          products.clickProductsSubcategory(
+            petrochemicalSubCategoryList.body[i].name
+          );
+          cy.clearCookies();
+        });
+      }
+    }
   }
 });
